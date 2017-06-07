@@ -43,7 +43,7 @@ a {
 	 
 	        transform: scale(1);
 } 
-* {font-weight: normal;}
+* {font-weight: 300;}
 @-webkit-keyframes GALA {
 	from {
 		-webkit-filter:hue-rotate(0deg)
