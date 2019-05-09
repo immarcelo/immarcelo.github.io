@@ -522,4 +522,14 @@ strong {
 
 p.obs {opacity: .6;}
 
+.portfolio-lista li {
+	font-size: 14px;
+    padding: 10px;
+    transform: rotate(-14deg);
+}
+@media (min-width:1024px){
+  .portfolio-lista li {
+  	display: inline-block;
+  } 
+}
  
