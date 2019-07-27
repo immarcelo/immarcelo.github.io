@@ -500,10 +500,11 @@ h3 {font-size: 1em;}
 strong {
 	font-weight: 700;
 }
-
+ 
 @media (max-width:800px) {
 	.ground ul  {
 		margin: auto;
+		margin-bottom: 2em;
 	}
 	.ground li {
 		text-align: left;
@@ -521,13 +522,20 @@ strong {
 }
 
 p.obs {opacity: .6;}
-
+.ground ul.portfolio-lista  {
+	margin-bottom: 4em;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+}
 .portfolio-lista li {
 	font-size: 14px;
     padding: 10px;
-    transform: rotate(-14deg);
+	transform: rotate(-14deg);
+	width: 50%;
 }
-@media (min-width:1024px){
+@media (min-width:768px){
   .portfolio-lista li {
   	display: inline-block;
   } 
