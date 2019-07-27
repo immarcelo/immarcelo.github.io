@@ -256,6 +256,9 @@ jQuery(document).ready(function($) {
 		$(this).removeClass('is-internal');
 	});
 	
+
+	 
+	
 	$('.tree').click(function(event) {
 		$('.ground.is-visible').removeClass('is-visible');
 	});

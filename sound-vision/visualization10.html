@@ -1,0 +1,111 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Looks like</title>
+	<script src="js/jquery.js"></script> 
+	<style>
+		body {background: #000;}
+		#stage{width: 1500px; height: 469px;position: absolute; top:0; bottom:0; left:0; right: 0; margin: auto;}
+	</style>
+	<script>
+		
+	</script>
+</head>
+<body id="body">
+<audio id="track" src="mp3/world-looks-red.mp3" controls></audio>
+	
+<canvas id="stage" width="1500" height="469"> </canvas>
+
+
+	
+<script>
+	var ctx;
+	window.addEventListener('load', init, false);
+	function init() {
+	  try {
+	    // Fix up for prefixing
+	    window.AudioContext = window.AudioContext||window.webkitAudioContext;
+	    ctx = new AudioContext();
+	  }
+	  catch(e) {
+	    alert('Web Audio API is not supported in this browser');
+	  }
+	}
+	window.onload = function () {
+		var audio = document.getElementById('track');
+		var audioSrc = ctx.createMediaElementSource(audio);
+		var analyser = ctx.createAnalyser();
+		analyser.fftSize = 256;
+		audioSrc.connect(analyser);
+		analyser.connect(ctx.destination);
+		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+		
+
+		function drawImage (imageObj) {
+			var canvas = document.getElementById('stage');
+			var context = canvas.getContext('2d');
+			var x = 0;
+			var y = 0;
+			
+			context.drawImage(imageObj, x, y);
+	
+			var imageData = context.getImageData(x,y,imageObj.width, imageObj.height);
+	
+			var data = imageData.data;
+	
+			analyser.getByteFrequencyData(frequencyData);
+			
+			var freq = 25;
+
+			for (var i = 0; i < data.length; i += 8) {
+				data[i] = 255 - data[i];
+				data[i + 1] = 255 - data[i]; 
+				data[i + frequencyData[40]] = 255 - data [i + 2]; 
+				data[i + 3] = 255 - data [i + frequencyData[40]]; 
+			}
+	
+			context.putImageData(imageData,x,y);
+
+			// var dataURL = canvas.toDataURL();
+	 		// 	document.getElementById('canvasImg').src = dataURL;
+			}
+
+		var fps = 30;
+	
+		function update() {
+			setTimeout(function  () {
+				requestAnimationFrame(update);
+				
+				var imageObj = new Image();
+				imageObj.onload = function() {
+					drawImage(this);
+				}
+
+
+				imageObj.src = "assets/11b.jpg";
+			},  1000 / fps);
+		}
+		
+		audio.play();
+		update();
+	
+		
+
+
+	}
+
+	
+ 		
+ 		
+</script>
+
+
+
+
+
+
+</body>
+</html>
