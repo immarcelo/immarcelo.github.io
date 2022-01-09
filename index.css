@@ -1,0 +1,115 @@
+body {
+    background: rgb(19, 19, 19);
+    color: #fff;
+    cursor: pointer;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section.bg {
+    transition: transform 0.9s ease-out;
+}
+article {
+    transition: transform 0.5s ease-out;
+}
+section.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ring {
+    position: fixed;
+    top: 0;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    margin: auto;
+    width: 200vh;
+    height: 200vh;
+    background: #cbcbcc;
+    transform-origin: center;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: inset -50px 2px 200px blue, inset 0 0vw 200px 30px #f13800;
+    transition: transform 0.24s ease-out, opacity 0.56s ease,
+        background-color 0.24s ease-out;
+}
+
+@media (orientation: portrait) {
+    .ring {
+        width: 200vw;
+        height: 200vw;
+    }
+}
+
+article {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    max-width: min(31em, 90vw);
+    min-height: 100vh;
+    margin: auto;
+    text-transform: lowercase;
+    font-size: clamp(1rem, 2rem, 5vw);
+    font-family: sans-serif;
+    letter-spacing: 0.2em;
+    line-height: 1.5;
+    cursor: default;
+}
+
+h1 {
+    text-align: left;
+    font-size: 4em;
+    font-size: clamp(2rem, 4em, 25vw);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-family: serif;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li::before {
+    content: '__';
+    letter-spacing: 0;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: rgb(50, 50, 80);
+    background-color: #fff;
+}
+
+footer {
+    font-size: clamp(0.1rem, 1rem, 3vw);
+    text-align: center;
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    padding-top: 25vh;
+}
+@media (min-width: 48em) {
+    footer {
+        text-align: right;
+    }
+}
+@media (min-width: 64em) {
+    footer {
+        padding-top: 0;
+    }
+}
